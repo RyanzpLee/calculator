@@ -1,0 +1,156 @@
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: rgb(21, 127, 153);
+  width: 100%;
+}
+
+.calculator_body {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(63, 61, 61);
+  padding: 5px;
+  box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper {
+  margin: 0;
+  padding: 2px;
+  background: black;
+}
+
+.display_container {
+  padding: 3px;
+  background: blanchedalmond;
+  height: 60px;
+  margin-bottom: 5px;
+}
+
+.display {
+  color: black;
+  text-align: right;
+  font-size: 40px;
+  line-height: 60px;
+}
+
+.inputs {
+  display: grid;
+  gap: 0.2rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.btn {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+/* Clear btns */
+.btn:nth-child(n + 1):nth-child(-n + 3) {
+  background: rgb(9, 152, 218);
+}
+
+.btn:nth-child(1) {
+  grid-row: 1;
+  grid-column: 1;
+}
+.btn:nth-child(2) {
+  grid-row: 1;
+  grid-column: 2;
+}
+.btn:nth-child(3) {
+  grid-row: 1;
+  grid-column: 3;
+}
+
+/* Operators */
+
+.btn:nth-child(n + 4):nth-child(-n + 8) {
+  background: orange;
+}
+.btn:nth-child(4) {
+  grid-row: 1;
+  grid-column: 4;
+}
+.btn:nth-child(5) {
+  grid-row: 2;
+  grid-column: 4;
+}
+.btn:nth-child(6) {
+  grid-row: 3;
+  grid-column: 4;
+}
+.btn:nth-child(7) {
+  grid-row: 4;
+  grid-column: 4;
+}
+.btn:nth-child(8) {
+  grid-row: 5;
+  grid-column: 4;
+}
+
+/* numbers */
+.btn:nth-child(n + 9):nth-child(-n + 19) {
+  background: teal;
+}
+.btn:nth-child(9) {
+  grid-row: 2;
+  grid-column: 1;
+}
+.btn:nth-child(10) {
+  grid-row: 2;
+  grid-column: 2;
+}
+.btn:nth-child(11) {
+  grid-row: 2;
+  grid-column: 3;
+}
+.btn:nth-child(12) {
+  grid-row: 3;
+  grid-column: 1;
+}
+.btn:nth-child(13) {
+  grid-row: 3;
+  grid-column: 2;
+}
+.btn:nth-child(14) {
+  grid-row: 3;
+  grid-column: 3;
+}
+.btn:nth-child(15) {
+  grid-row: 4;
+  grid-column: 1;
+}
+.btn:nth-child(16) {
+  grid-row: 4;
+  grid-column: 2;
+}
+.btn:nth-child(17) {
+  grid-row: 4;
+  grid-column: 3;
+}
+
+/* 0 and dot */
+.btn:nth-child(18) {
+  width: calc(100px + 0.2rem);
+  grid-row: 5;
+  grid-column: 1 / 3;
+}
+.btn:nth-child(19) {
+  grid-row: 5;
+  grid-column: 3;
+}
