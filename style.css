@@ -61,6 +61,20 @@ body {
   height: 50px;
   text-align: center;
   line-height: 50px;
+  font-size: large;
+  color: black;
+  border: none;
+  outline: none;
+  transition: filter 100ms ease-in-out;
+}
+
+.btn:hover {
+  filter: brightness(1.5);
+}
+
+.btn:active {
+  filter: brightness(1.5);
+  transform: translateY(1px);
 }
 
 /* Clear btns */

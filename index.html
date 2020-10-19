@@ -10,34 +10,32 @@
     <div class="calculator_body">
       <div class="wrapper">
         <div class="display_container">
-          <div class="display">1234567890</div>
+          <div class="display">0</div>
         </div>
         <div class="inputs">
-          <!-- <div class="clear_btns btns"> -->
-          <div id="clear" class="btn">AC</div>
-          <div id="backspace" class="btn">⌫</div>
-          <div id="percentage" class="btn">%</div>
-          <!-- </div> -->
-          <!-- <div class="operators btns"> -->
-          <div class="btn">/</div>
-          <div class="btn">*</div>
-          <div class="btn">-</div>
-          <div class="btn">+</div>
-          <div class="btn">=</div>
-          <!-- </div> -->
-          <!-- <div class="numbers btns"> -->
-          <div class="btn">7</div>
-          <div class="btn">8</div>
-          <div class="btn">9</div>
-          <div class="btn">4</div>
-          <div class="btn">5</div>
-          <div class="btn">6</div>
-          <div class="btn">1</div>
-          <div class="btn">2</div>
-          <div class="btn">3</div>
-          <div class="btn">0</div>
-          <div class="btn">.</div>
-          <!-- </div> -->
+
+          <button type="button" value="clear" id="clear" class="btn">AC</button>
+          <button type="button" value="back" data-key="8" id="backspace" class="btn">⌫</button>
+          <button type="button" value="percent" data-key="80" id="percent" class="btn">%</button>
+
+          <button type="button" value="/" data-key="68" class="operator btn">/</button>
+          <button type="button" value="*" data-key="88" class="operator btn">*</button>
+          <button type="button" value="-" data-key="173" class="operator btn">-</button>
+          <button type="button" value="+" data-key="61" class="operator btn">+</button>
+          <button type="button" value="=" data-key="69" id="equals" class="btn">=</button>
+
+          <button type="button" value="7" data-key="55" class="operand btn">7</button>
+          <button type="button" value="8" data-key="56" class="operand btn">8</button>
+          <button type="button" value="9" data-key="57" class="operand btn">9</button>
+          <button type="button" value="4" data-key="52" class="operand btn">4</button>
+          <button type="button" value="5" data-key="53" class="operand btn">5</button>
+          <button type="button" value="6" data-key="54" class="operand btn">6</button>
+          <button type="button" value="1" data-key="49" class="operand btn">1</button>
+          <button type="button" value="2" data-key="50" class="operand btn">2</button>
+          <button type="button" value="3" data-key="51" class="operand btn">3</button>
+          <button type="button" value="0" data-key="48" class="operand btn">0</button>
+          <button type="button" value="." data-key="190" id="decimal" class="btn">.</button>
+
         </div>
       </div>
     </div>
