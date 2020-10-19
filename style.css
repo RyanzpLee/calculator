@@ -64,6 +64,7 @@ body {
   font-size: large;
   color: black;
   border: none;
+  border-radius: 1px;
   outline: none;
   transition: filter 100ms ease-in-out;
 }
