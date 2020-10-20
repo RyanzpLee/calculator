@@ -8,9 +8,9 @@ const percent = document.querySelector('#percent');
 const decimal = document.querySelector('#decimal');
 
 let op = '';
-let num1 = 0;
-let num2 = 0;
-
+let num1 = '';
+let num2 = '';
+let result = '';
 let value = '';
 
 function add(a, b) {
@@ -32,27 +32,61 @@ function multiply(a, b) {
 function operate(op, num1, num2) {
   switch (op) {
     case '+':
-      console.log(add(num1, num2));
+      value = add(num1, num2);
+      num1 = value;
+      num2 = '';
       break;
     case '-':
-      console.log(substract(num1, num2));
+      value = subtract(num1, num2);
+      num1 = value;
+      num2 = '';
       break;
     case '*':
-      console.log(multiply(num1, num2));
+      value = multiply(num1, num2);
+      num1 = value;
+      num2 = '';
       break;
     case '/':
-      console.log(divide(num1, num2));
+      value = divide(num1, num2);
+      num1 = value;
+      num2 = '';
       break;
   }
 }
 
 function displayValue() {
   display.innerHTML = value;
+  if (display.length > 9) {
+    display.innerHTML = value.substring(0, 9);
+  }
 }
 
 function addToValue(num) {
   if (value.length != 10) {
     value = value + num;
+  }
+}
+
+function removeFromValue() {
+  if (value.length > 0) {
+    value = value.slice(0, -1);
+  }
+}
+
+function clearValues() {
+  op = '';
+  num1 = '';
+  num2 = '';
+  value = '';
+  display.innerHTML = '0';
+}
+
+function addDecimal(dot) {
+  if (!value.includes(dot)) {
+    value += dot;
+  } else if (value === '') {
+    value = '0';
+    value += dot;
   }
 }
 
@@ -62,3 +96,48 @@ operand.forEach((op) =>
     displayValue();
   })
 );
+
+operator.forEach((operator) =>
+  operator.addEventListener('click', (e) => {
+    if (op === '' && num2 === '') {
+      op = e.target.value;
+      num1 = value;
+      value = '';
+    } else if (op != '' && num1 != '' && value != '') {
+      num2 = value;
+      operate(op, Number(num1), Number(num2));
+
+      op = e.target.value;
+      num2 = '';
+      displayValue();
+    }
+    op = e.target.value;
+  })
+);
+
+equals.addEventListener('click', () => {
+  if (num1 != '' && op != '' && num2 === '') {
+    num2 = value;
+    operate(op, Number(num1), Number(num2));
+    displayValue();
+  }
+});
+
+decimal.addEventListener('click', (e) => {
+  addDecimal(e.target.value);
+  displayValue();
+});
+
+clear.addEventListener('click', () => {
+  clearValues();
+});
+
+back.addEventListener('click', () => {
+  removeFromValue();
+  displayValue();
+});
+
+window.addEventListener('keypress', (e) => {
+  const btn = document.querySelector(`button[data-key='${e.keyCode}']`);
+  btn.click();
+});
