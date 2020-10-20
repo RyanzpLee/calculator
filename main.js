@@ -68,7 +68,7 @@ function addToValue(num) {
 }
 
 function removeFromValue() {
-  if (value.length > 0) {
+  if (display.innerHTML.length > 1) {
     value = value.slice(0, -1);
   }
 }
@@ -133,11 +133,13 @@ clear.addEventListener('click', () => {
 });
 
 back.addEventListener('click', () => {
-  removeFromValue();
-  displayValue();
+  if (display.innerHTML.length > 1) {
+    removeFromValue();
+    displayValue();
+  }
 });
 
-window.addEventListener('keypress', (e) => {
+window.addEventListener('keydown', (e) => {
   const btn = document.querySelector(`button[data-key='${e.keyCode}']`);
   btn.click();
 });
