@@ -7,7 +7,8 @@ const clear = document.querySelector('#clear');
 const percent = document.querySelector('#percent');
 const decimal = document.querySelector('#decimal');
 
-let op = '';
+let op1 = '';
+let op2 = '';
 let num1 = '';
 let num2 = '';
 let result = '';
@@ -29,27 +30,19 @@ function multiply(a, b) {
   return a * b;
 }
 
-function operate(op, num1, num2) {
-  switch (op) {
+function operate(op1, num1, num2) {
+  switch (op1) {
     case '+':
-      value = add(num1, num2);
-      num1 = value;
-      num2 = '';
+      return add(num1, num2);
       break;
     case '-':
-      value = subtract(num1, num2);
-      num1 = value;
-      num2 = '';
+      return subtract(num1, num2);
       break;
     case '*':
-      value = multiply(num1, num2);
-      num1 = value;
-      num2 = '';
+      return multiply(num1, num2);
       break;
     case '/':
-      value = divide(num1, num2);
-      num1 = value;
-      num2 = '';
+      return divide(num1, num2);
       break;
   }
 }
@@ -62,7 +55,7 @@ function displayValue() {
 }
 
 function addToValue(num) {
-  if (value.length != 10) {
+  if (value.length < 10) {
     value = value + num;
   }
 }
@@ -70,17 +63,19 @@ function addToValue(num) {
 function removeFromValue() {
   if (display.innerHTML.length > 1) {
     value = value.slice(0, -1);
-    displayValue();
+    displayValue(value);
   } else {
-    value = ''
-    display.innerHTML = '0'
+    value = '';
+    display.innerHTML = '0';
   }
 }
 
 function clearValues() {
-  op = '';
+  op1 = '';
+  op2 = '';
   num1 = '';
   num2 = '';
+  result = '';
   value = '';
   display.innerHTML = '0';
 }
@@ -94,36 +89,81 @@ function addDecimal(dot) {
   }
 }
 
-operand.forEach((op) =>
-  op.addEventListener('click', (e) => {
-    addToValue(e.target.value);
-    displayValue();
+// Number input
+operand.forEach((op1) =>
+  op1.addEventListener('click', (e) => {
+    if (op1 === '') {
+      if (value === '' || value === '0') {
+        // addToValue(e.target.value);
+        value = e.target.value;
+      } else if (value === num1) {
+        value = e.target.value;
+      } else {
+        addToValue(e.target.value);
+      }
+    } else {
+      if (value === num1) {
+        value = e.target.value;
+      } else {
+        addToValue(e.target.value);
+      }
+      displayValue();
+    }
   })
 );
 
+// Operator input
 operator.forEach((operator) =>
   operator.addEventListener('click', (e) => {
-    if (op === '' && num2 === '') {
-      op = e.target.value;
-      num1 = value;
-      value = '';
-    } else if (op != '' && num1 != '' && value != '') {
+    // if we have 1st operator
+    if (op1 != '' && op2 === '') {
+      op2 = e.target.value;
       num2 = value;
-      operate(op, Number(num1), Number(num2));
-
-      op = e.target.value;
-      num2 = '';
+      result = operate(op1, Number(num1), Number(num2));
+      value = result;
       displayValue();
+      num1 = value;
+      result = '';
+    } else if ((op1 != '') & (op2 != '')) {
+      num2 = value;
+      result = operate(op2, Number(num1), Number(num2));
+      value = result;
+      displayValue();
+      op2 = e.target.value;
+      value = result;
+      num1 = value;
+      result = '';
+      // No operator
+    } else {
+      op1 = e.target.value;
+      num1 = value;
     }
-    op = e.target.value;
   })
 );
 
 equals.addEventListener('click', () => {
-  if (num1 != '' && op != '' && num2 === '') {
+  if ((op1 === '')) {
+    value = value;
+  } else if (op2 != '') {
     num2 = value;
-    operate(op, Number(num1), Number(num2));
+    result = operate(op2, Number(num1), Number(num2));
+    value = result;
     displayValue();
+    num1 = value;
+    num2 = '';
+    op1 = '';
+    op2 = '';
+    result = '';
+  } else {
+    num2 = value;
+    result = operate(op1, Number(num1), Number(num2));
+    value = result;
+    displayValue();
+    num1 = value;
+    num2 = '';
+    op1 = '';
+    op2 = '';
+    result = '';
   }
 });
 
