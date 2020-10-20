@@ -13,6 +13,12 @@ html {
 body {
   background: rgb(21, 127, 153);
   width: 100%;
+  min-height: 100%;
+}
+
+a {
+  text-decoration: underline;
+  color: white;
 }
 
 .calculator_body {
@@ -172,4 +178,14 @@ body {
 .btn:nth-child(19) {
   grid-row: 5;
   grid-column: 3;
+}
+
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 5px;
+  text-align: center;
+  font-size: 0.75rem;
 }
