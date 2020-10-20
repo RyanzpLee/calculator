@@ -70,6 +70,10 @@ function addToValue(num) {
 function removeFromValue() {
   if (display.innerHTML.length > 1) {
     value = value.slice(0, -1);
+    displayValue();
+  } else {
+    value = ''
+    display.innerHTML = '0'
   }
 }
 
@@ -133,9 +137,8 @@ clear.addEventListener('click', () => {
 });
 
 back.addEventListener('click', () => {
-  if (display.innerHTML.length > 1) {
+  if (display.innerHTML.length > 0) {
     removeFromValue();
-    displayValue();
   }
 });
 
