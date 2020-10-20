@@ -23,7 +23,7 @@ function subtract(a, b) {
 }
 
 function divide(a, b) {
-  return a / b;
+  return b === 0 ? 'Ryan Lee' : a / b;
 }
 
 function multiply(a, b) {
@@ -142,7 +142,7 @@ operator.forEach((operator) =>
 );
 
 equals.addEventListener('click', () => {
-  if ((op1 === '')) {
+  if (op1 === '') {
     value = value;
   } else if (op2 != '') {
     num2 = value;
