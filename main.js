@@ -81,12 +81,12 @@ function clearValues() {
 }
 
 function addDecimal(dot) {
-  if (!value.includes(dot)) {
-    value += dot;
-  } else if (value === '') {
-    value = '0';
-    value += dot;
-  }
+   if (value === '' || num1 != '') {
+     value = '0';
+     value += dot;
+   } else if (!value.includes(dot)) {
+     value += dot;
+   }
 }
 
 // Number input
